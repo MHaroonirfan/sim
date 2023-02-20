@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\CategoriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -11,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+*/ 
 
 Route::get('/', function () {
     return view('welcome');
@@ -31,3 +32,9 @@ Route::middleware([
 Route::get('/template',function(){
     	return view('layouts.master');
     });
+
+
+Route::middleware(['auth:sanctum'])->group(function(){
+	//CATEGORY
+	Route::resource('categories', CategoriesController::class);
+});
